@@ -6,7 +6,9 @@ The project performs a unscented kalman filter approach for data filtering to de
 Dependencies
 
 cmake >= v3.5
+
 make >= v4.1
+
 gcc/g++ >= v5.4
 
 
