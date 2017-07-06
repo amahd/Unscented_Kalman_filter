@@ -2,12 +2,15 @@
 The project performs a unscented kalman filter approach for data filtering to detect of a moving vehicle 
 
 
-#Dependencies
+#
+Dependencies
 
 cmake >= v3.5
 make >= v4.1
 gcc/g++ >= v5.4
-#Basic Build Instructions
+
+
+# Basic Build Instructions
 Clone this repo.
 Make a build directory: mkdir build && cd build
 Compile: cmake .. && make
