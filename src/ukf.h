@@ -2,6 +2,7 @@
 #define UKF_H
 
 #include "measurement_package.h"
+#include "tools.h"
 #include "Eigen/Dense"
 #include <vector>
 #include <string>
@@ -32,7 +33,8 @@ public:
   MatrixXd Xsig_pred_;
 
   ///* time when the state is true, in us
-  long long time_us_;
+  //!
+  //long long time_us_;
 
   ///* Process noise standard deviation longitudinal acceleration in m/s^2
   double std_a_;
@@ -67,6 +69,19 @@ public:
   ///* Sigma point spreading parameter
   double lambda_;
 
+
+  ///* Sigma point spreading parameter
+  long timestamp_prev_;
+
+
+  ///* current valuem for radar NIS
+  double nis_radar_;
+
+
+  ///* current value for lidar NIS
+  double nis_lidar_;
+
+  Tools tools;   // an instance of tools function to normalise angle and for RMS
 
   /**
    * Constructor
