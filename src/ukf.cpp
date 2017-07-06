@@ -9,6 +9,9 @@ using Eigen::MatrixXd;
 using Eigen::VectorXd;
 using std::vector;
 
+
+
+
 /**
  * Main constructor, initlaizing variable
  */
@@ -37,7 +40,7 @@ UKF::UKF() {
  P_ = MatrixXd(n_x_, n_x_);
 
  // Process noise standard deviation (longitudinal acceleration in m/s^2)
- std_a_ = 2.15; //original: 30 is too high when compared with other vals
+ std_a_ = 4.80; //original: 30 is too high when compared with other vals
 
  // Process noise standard deviation (yaw acceleration in rad/s^2)
  std_yawdd_ = 2; //original: 30 is too too high
@@ -74,11 +77,11 @@ UKF::UKF() {
 
 
  // Prediction covariance matrix, can be initialised in constructor
-  P_ <<   1, 0, 0, 0, 0,
-		  0, 1, 0, 0, 0,
-		  0, 0, 1, 0, 0,
-		  0, 0, 0, 1, 0,
-		  0, 0, 0, 0, 1;
+  P_ <<   VAL, 0, 0, 0, 0,
+		  0, VAL, 0, 0, 0,
+		  0, 0, VAL*65, 0, 0,
+		  0, 0, 0, VAL*65, 0,
+		  0, 0, 0, 0, VAL*65;
 
 
 }
@@ -96,7 +99,7 @@ void UKF::ProcessMeasurement(MeasurementPackage meas_package) {
  if (!is_initialized_) {
 
 	 // Initialize the state ekf_.x_
-	 x_ << 1, 1, 1, 1, 0;
+	 x_ << 1, 1, 0, 0, 0;
 
 
 	 if (meas_package.sensor_type_ == MeasurementPackage::RADAR) {
@@ -123,7 +126,7 @@ void UKF::ProcessMeasurement(MeasurementPackage meas_package) {
 		 px =   0.001;
 		 py =   0.001;
 	 }
-	 x_ << px, py, 1, 1, 1;
+	 x_ << px, py, 0, 0, 0;
 
 	 }
 	 else if (meas_package.sensor_type_ == MeasurementPackage::LASER) {

@@ -1,6 +1,8 @@
 #ifndef UKF_H
 #define UKF_H
 
+#define VAL 1
+
 #include "measurement_package.h"
 #include "tools.h"
 #include "Eigen/Dense"
